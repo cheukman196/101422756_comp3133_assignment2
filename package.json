@@ -1,0 +1,20 @@
+{
+  "name": "101422756_comp3133_assignment2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "dotenv -e backend/.env -- nodemon backend/src/index.js",
+    "client": "cd frontend && ng serve --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.9"
+  }
+}
