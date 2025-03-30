@@ -11,8 +11,15 @@ const userTypeDef = gql`
     }
 
     type LoginResponse {
+        success: Boolean!
         message: String!
         token: String
+    }
+
+    type SignupResponse {
+        success: Boolean!
+        message: String!
+        user: User
     }
 
     type Query {
@@ -28,7 +35,7 @@ const userTypeDef = gql`
             username: String!, 
             email: String!, 
             password: String!, 
-        ):User!
+        ):SignupResponse!
     }
 `
 
