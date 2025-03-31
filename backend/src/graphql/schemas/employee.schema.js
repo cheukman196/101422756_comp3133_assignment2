@@ -21,6 +21,18 @@ const employeeTypeDef = gql`
         updated_at: String    
     }
 
+    type EmployeeResponse {
+        success: Boolean!
+        message: String!
+        employee: Employee
+    }
+
+    type EmployeesResponse {
+        success: Boolean!
+        message: String!
+        employees: [Employee]!
+    }
+
     enum Gender {
         Male
         Female
@@ -29,12 +41,12 @@ const employeeTypeDef = gql`
 
     type Query {
         # EMPLOYEE
-        getAllEmployees: [Employee]!
-        searchEmployeeById(id: ID!): Employee
+        getAllEmployees: EmployeesResponse!
+        searchEmployeeById(id: ID!): EmployeeResponse!
         searchEmployeeByDesignationOrDepartment(
             designation: String,
             department: String
-        ): [Employee]!
+        ): EmployeesResponse!
     }
 
     type Mutation {
@@ -50,7 +62,7 @@ const employeeTypeDef = gql`
             date_of_joining: String!,
             department: String!,
             employee_photo: String
-        ):Employee!
+        ):EmployeeResponse!
         
         "updates employee by id and optional fields"
         updateEmployee(
@@ -64,10 +76,10 @@ const employeeTypeDef = gql`
             date_of_joining: String,
             department: String,
             employee_photo: String
-        ):Employee!
+        ):EmployeeResponse!
 
         "deletes employee by id"
-        deleteEmployee(id: ID!): Boolean!
+        deleteEmployee(id: ID!): EmployeeResponse!
     }
 `
 

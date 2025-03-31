@@ -1,0 +1,24 @@
+<h3>Employee Dashboard</h3>
+<table class="table table-dark table-striped table-hover table-responsive">
+    <caption>List of Employees</caption>
+    <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th class="col-span-2">Name</th>
+            <th>Dept</th>
+            <th>Pos</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{employee.first_name}} {{employee.last_name}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.designation}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="navigateToEmployeeDetails(employee.id)">Manage</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

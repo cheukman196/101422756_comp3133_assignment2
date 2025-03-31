@@ -17,6 +17,7 @@ export class UserService {
         login(username: $username, password: $password) {
           token
           message
+          success
         } 
       }
     `
@@ -48,6 +49,7 @@ export class UserService {
     const query = `
       mutation Mutation($username: String!, $email: String!, $password: String!) {
         signup(username: $username, email: $email, password: $password) {
+          success
           message
           user {
             username
