@@ -51,6 +51,6 @@ export class LoginComponent {
   }
 
   navigateToSignup() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/signup']);
   }
 }

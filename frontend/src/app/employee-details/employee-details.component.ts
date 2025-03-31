@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Employee, EmployeeResponseType, Gender } from '../types/responseTypes';
 import { EmployeeService } from '../employee.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -6,14 +6,15 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { enumValidator } from '../validator/enum-validator';
 import { dateFormatValidator } from '../validator/date-format-validator';
 import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from '../date-format.pipe';
 
 @Component({
   selector: 'app-employee-details',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, DateFormatPipe],
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.css'
 })
-export class EmployeeDetailsComponent {
+export class EmployeeDetailsComponent implements OnInit {
   employee: Employee = {
     id: '',
     first_name: '',
@@ -48,7 +49,19 @@ export class EmployeeDetailsComponent {
       }
 
       this.employee = response.employee;
-      this.employee.date_of_joining = this.formatDate(new Date(Number(this.employee.date_of_joining)));
+      // this.employee.date_of_joining = this.formatDate(new Date(Number(this.employee.date_of_joining)));
+
+      this.employeeForm.patchValue({
+        first_name: this.employee.first_name,
+        last_name: this.employee.last_name,
+        email: this.employee.email,
+        gender: this.employee.gender,
+        department: this.employee.department,
+        designation: this.employee.designation,
+        date_of_joining: this.employee.date_of_joining,
+        salary: this.employee.salary,
+        employee_photo: this.employee.employee_photo
+      });
 
       this.employeeForm.disable()
     } catch (error) {
@@ -64,7 +77,7 @@ export class EmployeeDetailsComponent {
     department: new FormControl('', [Validators.required]),
     designation: new FormControl('', [Validators.required]),
     date_of_joining: new FormControl('', [Validators.required, dateFormatValidator()]),
-    salary: new FormControl('', [Validators.required, Validators.min(1000)]),
+    salary: new FormControl(0, [Validators.required, Validators.min(1000)]),
     employee_photo: new FormControl(''),
   });
 
@@ -72,13 +85,13 @@ export class EmployeeDetailsComponent {
 
   updateEmployee = async() => {
     if (this.employeeForm.valid) {
-      const { firstName, lastName, email, gender, department,
-        designation, dateOfJoining, salary, employee_photo } = this.employeeForm.value;
+      const { first_name, last_name, email, gender, department,
+        designation, date_of_joining, salary, employee_photo } = this.employeeForm.value;
 
     try {
         const response: EmployeeResponseType = await this.employeeService.updateEmployeeById(
-          this.employee.id, firstName, lastName, email, gender, department,
-          designation, dateOfJoining, salary, employee_photo
+          this.employee.id, first_name, last_name, email, gender, designation,
+          department, date_of_joining, salary, employee_photo
         )
         this.errorMessage.set(response.message);
         

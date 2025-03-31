@@ -33,7 +33,8 @@ export class UserService {
       const data: LoginResponseType = response.data.data.login;
       const responseToComponent: BaseResponseType = { message: data.message, success: data.success };
       if(data.success && data.token){
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('username', username);
         // add navigation to home page
       }
       return responseToComponent;

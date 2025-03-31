@@ -3,16 +3,10 @@
   <div class="form-group mb-3">
     <label for="username" class="form-label">Username</label>
     <input id="username" type="text" formControlName="username" required class="form-control">
-    @if (username.invalid && (username.dirty || username.touched)) {
-      <div *ngIf="username.errors?.['required']" class="text-warning">Username is required.</div>
-    }
   </div>
   <div class="form-group mb-3">
     <label for="password" class="form-label">Password</label>
     <input id="password" type="password" formControlName="password" required class="form-control">
-    @if (password.invalid && (password.dirty || password.touched)) {
-      <div *ngIf="password.errors?.['required']" class="text-warning">Password is required.</div>
-    }
   </div>
   <button type="submit" class="btn btn-primary me-3">Login</button>
   <button type="button" (click)="navigateToSignup()" class="btn btn-secondary">Signup</button>

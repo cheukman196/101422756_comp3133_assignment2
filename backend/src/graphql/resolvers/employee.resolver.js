@@ -27,8 +27,12 @@ const resolvers = {
                 throw new Error('Must provide designation or department')
             
             const condition = {}
-            if(designation) condition.designation = designation;
-            if(department) condition.department = department; 
+            if(designation) condition.designation = {
+                $regex: new RegExp(`${designation}`, 'i') // Matches anywhere in the designation
+              };
+            if(department) condition.department = {
+                $regex: new RegExp(`${department}`, 'i') // Matches anywhere in the department
+              };; 
 
             const employees = await Employee.find(condition)
             if (!employees || employees.length === 0)
@@ -69,7 +73,10 @@ const resolvers = {
             if(!id || !isValidObjectId(id))
                 return {employee: null, success: false, message: "Invalid or missing employee ID"};
 
-            const existingEmployee = await Employee.findOne({ email: email });
+            const existingEmployee = await Employee.findOne({ 
+                email: email,
+                _id: { $ne: id } // check if email is already taken
+             });
             if (existingEmployee) return { success: false, message: "Email has already been taken", employee: null };
 
             const updatedEmployee = await Employee.findOneAndUpdate(
