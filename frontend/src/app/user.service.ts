@@ -45,6 +45,12 @@ export class UserService {
     }
   }
 
+  logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('username');
+    // add navigation to login page
+  }
+
   async register(username: string, email: string, password: string): Promise<any> {  
     const url = this.configService.getGraphqlUrl();
     const query = `
