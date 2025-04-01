@@ -63,7 +63,7 @@
   </div>
   <div class="form-group mb-3">
     <label for="date_of_joining" class="form-label">Date of Joining</label>
-    <input id="date_of_joining" type="text" [value]="employee.date_of_joining | dateFormat" formControlName="date_of_joining" required class="form-control" placeholder="YYYY-MM-DD">
+    <input id="date_of_joining" type="text" formControlName="date_of_joining" required class="form-control" placeholder="YYYY-MM-DD">
     <div *ngIf="employeeForm.controls['date_of_joining'].invalid && (employeeForm.controls['date_of_joining'].dirty || employeeForm.controls['date_of_joining'].touched)" class="text-warning">
       <div *ngIf="employeeForm.controls['date_of_joining'].errors?.['required']">Date of Joining is required.</div>
       <div *ngIf="employeeForm.controls['date_of_joining'].errors?.['invalidDateFormat']">Date format is invalid. Please use YYYY-MM-DD.</div>

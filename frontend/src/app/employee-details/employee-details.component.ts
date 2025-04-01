@@ -49,7 +49,7 @@ export class EmployeeDetailsComponent implements OnInit {
       }
 
       this.employee = response.employee;
-      // this.employee.date_of_joining = this.formatDate(new Date(Number(this.employee.date_of_joining)));
+      this.employee.date_of_joining = this.formatDate(new Date(Number(this.employee.date_of_joining)))
 
       this.employeeForm.patchValue({
         first_name: this.employee.first_name,
