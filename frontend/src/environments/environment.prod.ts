@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    graphqlUrl: 'https://PLEASE-REPLACE-WITH-DEPLOY-URL/graphql'
+    graphqlUrl: 'https://one01422756-comp3133-assignment2.onrender.com/graphql'
 };
