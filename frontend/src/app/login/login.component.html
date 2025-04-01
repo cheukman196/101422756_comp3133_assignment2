@@ -1,12 +1,14 @@
-<form [formGroup]="loginForm()" (ngSubmit)="login()">
-    <div>
-      <label for="username">Username:</label>
-      <input id="username" type="text" formControlName="username" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input id="password" type="password" formControlName="password" required>
-    </div>
-    <button type="submit">Login</button>
-    <div>{{ errorMessage() }}</div>
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="m-3 p-3 bg-dark text-white rounded">
+  <h2 class="text-left">Login</h2>  
+  <div class="form-group mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input id="username" type="text" formControlName="username" required class="form-control">
+  </div>
+  <div class="form-group mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input id="password" type="password" formControlName="password" required class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary me-3">Login</button>
+  <button type="button" (click)="navigateToSignup()" class="btn btn-secondary">Signup</button>
+  <div class="text-warning">{{ errorMessage() }}</div>
 </form>

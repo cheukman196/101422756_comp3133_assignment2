@@ -1,0 +1,79 @@
+<form [formGroup]="employeeForm" (ngSubmit)="createEmployee()" class="m-3 p-3 bg-dark text-white rounded" >
+  <h2 class="text-left">Create Employee</h2>  
+  <button type="submit" class="btn btn-primary me-3">Create</button>
+  <button type="button" class="btn btn-secondary" (click)="navigateToDashboard()">Return</button>
+  <div class="text-warning">{{ errorMessage() }}</div>
+  <div class="form-group mb-3">
+    <label for="first_name" class="form-label">First Name</label>
+    <input id="first_name" type="text" formControlName="first_name" name="first_name" required class="form-control" placeholder="John">
+    <div *ngIf="employeeForm.controls['first_name'].invalid && (employeeForm.controls['first_name'].dirty || employeeForm.controls['first_name'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['first_name'].errors?.['required']">First Name is required.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="last_name" class="form-label">Last Name</label>
+    <input id="last_name" type="text" formControlName="last_name" name="last_name" required class="form-control" placeholder="Doe">
+    <div *ngIf="employeeForm.controls['last_name'].invalid && (employeeForm.controls['last_name'].dirty || employeeForm.controls['last_name'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['last_name'].errors?.['required']">Last Name is required.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input id="email" type="email" formControlName="email" name="email" required class="form-control" placeholder="email@domain.com">
+    <div *ngIf="employeeForm.controls['email'].invalid && (employeeForm.controls['email'].dirty || employeeForm.controls['email'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['email'].errors?.['required']">Email is required.</div>
+      <div *ngIf="employeeForm.controls['email'].errors?.['email']">Email format is invalid.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="gender" class="form-label">Gender</label>
+    <select id="gender" type="text" formControlName="gender" required class="form-control">
+        <option value="" disabled>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+    <div *ngIf="employeeForm.controls['gender'].invalid && (employeeForm.controls['gender'].dirty || employeeForm.controls['gender'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['gender'].errors?.['required']">Gender is required.</div>
+      <div *ngIf="employeeForm.controls['gender'].errors?.['enum']">Gender must be a valid value.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="department" class="form-label">Department</label>
+    <input id="department" type="text" formControlName="department" name="department" required class="form-control" placeholder="Admin & HR">
+    <div *ngIf="employeeForm.controls['department'].invalid && (employeeForm.controls['department'].dirty || employeeForm.controls['department'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['department'].errors?.['required']">Department is required.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="designation" class="form-label">Designation</label>
+    <input id="designation" type="text" formControlName="designation" name="designation" required class="form-control" placeholder="Administrator">
+    <div *ngIf="employeeForm.controls['designation'].invalid && (employeeForm.controls['designation'].dirty || employeeForm.controls['designation'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['designation'].errors?.['required']">Designation is required.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="date_of_joining" class="form-label">Date of Joining</label>
+    <input id="date_of_joining" type="text" formControlName="date_of_joining" required class="form-control" placeholder="YYYY-MM-DD">
+    <div *ngIf="employeeForm.controls['date_of_joining'].invalid && (employeeForm.controls['date_of_joining'].dirty || employeeForm.controls['date_of_joining'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['date_of_joining'].errors?.['required']">Date of Joining is required.</div>
+      <div *ngIf="employeeForm.controls['date_of_joining'].errors?.['invalidDateFormat']">Date format is invalid. Please use YYYY-MM-DD.</div>
+      <div *ngIf="employeeForm.controls['date_of_joining'].errors?.['invalidDate']">Invalid date. Please enter a valid date.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="salary" class="form-label">Salary</label>
+    <input id="salary" type="number" formControlName="salary" name="salary" required class="form-control" placeholder="60000">
+    <div *ngIf="employeeForm.controls['salary'].invalid && (employeeForm.controls['salary'].dirty || employeeForm.controls['salary'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['salary'].errors?.['required']">Salary is required.</div>
+      <div *ngIf="employeeForm.controls['salary'].errors?.['min']">Salary must be above $1000.</div>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="employee_photo" class="form-label">Employee Photo</label>
+    <input id="employee_photo" type="text" formControlName="employee_photo" name="employee_photo" class="form-control">
+    <div *ngIf="employeeForm.controls['employee_photo'].invalid && (employeeForm.controls['employee_photo'].dirty || employeeForm.controls['employee_photo'].touched)" class="text-warning">
+      <div *ngIf="employeeForm.controls['employee_photo'].errors?.['required']">Employee Photo is required.</div>
+    </div>
+  </div>  
+</form>
